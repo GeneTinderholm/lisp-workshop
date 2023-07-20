@@ -1,0 +1,8 @@
+(defmacro deftest (name &body body)
+    `(flet ((test (condition) 
+        (if (progn condition) 
+            (setf *tests* (cons '(,name ✅) *tests*))
+            (setf *tests* (cons '(,name ❌) *tests*)))
+        ))
+        ,@body)
+)
